@@ -9,9 +9,7 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage(
-      h1("mBudget")
-    )
+    mod_main_ui("main_1")
   )
 }
 
@@ -34,8 +32,9 @@ golem_add_external_resources <- function() {
     bundle_resources(
       path = app_sys("app/www"),
       app_title = "mBudget"
-    )
+    ),
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert()
+    shinyjs::useShinyjs()
   )
 }

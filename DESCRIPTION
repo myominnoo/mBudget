@@ -1,15 +1,28 @@
 Package: mBudget
 Title: Myo's Budget App
 Version: 0.1.0
-Authors@R: person('Myo Minn', 'Oo', email = 'dr.myominnoo@gmail.com', role = c('cre', 'aut'))
+Authors@R: 
+    person("Myo Minn", "Oo", , "dr.myominnoo@gmail.com", role = c("cre", "aut"))
 Description: A shiny app to manage personal budget.
-License: What license is it under?
-Imports: 
-    config (>= 0.3.1),
-    golem (>= 0.4.0),
-    shiny (>= 1.7.4)
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.1
+License: MIT + file LICENSE
 URL: https://github.com/myominnoo/mBudget
 BugReports: https://github.com/myominnoo/mBudget/issues
+Imports: 
+    bs4Dash,
+    config (>= 0.3.1),
+    DT,
+    golem (>= 0.4.0),
+    shinipsum,
+    shiny (>= 1.7.4),
+    shinyjs
+Suggests: 
+    spelling,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Depends: 
+    R (>= 2.10)
