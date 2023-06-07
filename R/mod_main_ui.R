@@ -128,7 +128,7 @@ mod_main_ui <- function(id){
 mod_main_server <- function(id){
 
 	## mongodb connection
-	url <- "mongodb+srv://myself:letmein2022@budgetapp.whtgpcl.mongodb.net"
+	url <- mongodb_link
 	con_tbl_expense <- mongolite::mongo("tbl_expense", "budgetApp", url)
 	con_tbl_category <- mongolite::mongo("tbl_category", "budgetApp", url)
 	con_tbl_pay_account <- mongolite::mongo("tbl_pay_account", "budgetApp", url)
