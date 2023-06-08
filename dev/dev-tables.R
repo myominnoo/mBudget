@@ -53,7 +53,6 @@ usethis::use_data(
 # mongodb -----------------------------------------------------------------
 
 ## mongodb connection
-url <- "mongodb+srv://myself:letmein2022@budgetapp.whtgpcl.mongodb.net"
 
 
 # users -------------------------------------------------------------------
