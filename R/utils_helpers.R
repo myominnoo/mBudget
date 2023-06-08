@@ -12,6 +12,10 @@
 format_tbl_expense <- function(df, lvl_exp_category = NULL,
 															 lvl_exp_pay_account = NULL)
 {
+	if (!nrow(df) > 0) {
+		df <- dummy_tbl_exp[0, ]
+	}
+
 	df <- df |>
 		dplyr::mutate(
 			# exp_id = as.character(exp_id),
@@ -43,6 +47,10 @@ format_tbl_expense <- function(df, lvl_exp_category = NULL,
 
 format_tbl_income <- function(df, lvl_exp_pay_account = NULL)
 {
+	if (!nrow(df) > 0) {
+		df <- dummy_tbl_income[0, ]
+	}
+
 	df <- df |>
 		dplyr::mutate(
 			inc_date = as.Date(inc_date),
@@ -331,6 +339,10 @@ get_summary_by_type <- function(exp, inc, sav, start_date, end_date)
 
 format_tbl_savings <- function(df, lvl_exp_pay_account = NULL)
 {
+	if (!nrow(df) > 0) {
+		df <- dummy_tbl_savings[0, ]
+	}
+
 	df <- df |>
 		dplyr::mutate(
 			sav_date = as.Date(sav_date),

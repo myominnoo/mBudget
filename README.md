@@ -1,15 +1,50 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# mBudget
+# mBudget: The Personal Budget App <img src="man/figures/logo.png" align="right" height="138" />
 
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
-The goal of mBudget is to …
+mBudget is a Shiny app developed to showcase the extended user
+authentication features of the [shinyAuthX
+package](https://github.com/myominnoo/shinyAuthX) as well as serve as a
+personal finance manager. It integrates advanced user authentication
+features from the shinyAuthX package, going beyond basic sign-in
+functionality and providing seamless integration of sign-up and
+password-recovery features.
+
+[shinyAuthX](https://github.com/myominnoo/shinyAuthX) is a R package
+specifically designed to enhance user authentication in Shiny
+applications. It offers a comprehensive suite of hassle-free
+authentication features, including sign-in, sign-out, sign-up, and
+password recovery mechanisms. These features are integrated into the
+mBudget app, providing a seamless and secure user experience.
+
+shinyAuthX leverages the power of MongoDB as the backend, utilizing the
+[mongolite](https://jeroen.github.io/mongolite/) package to interact
+with the database. This ensures the persistent storage and secure
+retrieval of user data, offering an added layer of protection to your
+personal information. Additionally, shinyAuthX incorporates the
+[blastula](https://github.com/rstudio/blastula) package, enabling to
+send customized emails for code verification during signup, welcome
+emails, and password recovery emails. This comprehensive integration
+allows for efficient communication with users, keeping them informed and
+engaged.
+
+To learn more about the extended user authentication capabilities
+offered by [shinyAuthX](https://github.com/myominnoo/shinyAuthX), visit
+the package documentation \[<https://myominnoo.github.io/shinyAuthX/>\].
+
+**Disclaimer**: While mBudget prioritizes security, it is essential to
+understand that no authentication process is entirely foolproof. We
+recommend taking necessary precautions and evaluating the security
+measures in place. Use mBudget and shinyAuthX at your own risk, being
+mindful of protecting your personal information and ensuring the
+security of your application.
 
 ## Installation
 
@@ -26,33 +61,61 @@ devtools::install_github("myominnoo/mBudget")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(mBudget)
-## basic example code
+## Run the app 
+mBudget::run_app()
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+<div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
 
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
+## Credits:
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+We would like to extend our sincere gratitude and acknowledgments to the
+following individuals for their contributions to the development of
+`shinyAuthX`:
 
-You can also embed plots, for example:
+- Paul Campbell: The author of the `shinyauthr` package, from which we
+  borrowed the `login` and `logout` module functions (`loginUI()`,
+  `loginServer()`, `logoutUI()`, `logoutServer()`). Paul’s work and
+  dedication have significantly influenced the functionality and
+  usability of `shinyAuthX`.
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+We would also like to specifically credit the following individuals for
+their contributions to the cookie-based authentication aspect of
+`shinyAuthX`:
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+- Michael Dewar: His expertise and contributions have played a crucial
+  role in shaping the implementation of the cookie-based authentication
+  mechanism in `shinyAuthX`. His insights have greatly enhanced the
+  security and functionality of this feature.
+
+- Calligross: Their valuable input and contributions have contributed to
+  the development and improvement of the cookie-based authentication
+  functionality in `shinyauthr`.
+
+For further information about their specific roles and contributions, we
+recommend visiting the
+[`shinyauthr`](https://github.com/PaulC91/shinyauthr) GitHub page, where
+you can find additional details about the original package and its
+contributors.
+
+## Disclaimer:
+
+It is important to note that the security of any authentication system
+is a complex matter, and while we have taken great care in developing
+`shinyAuthX`, we cannot guarantee its foolproof security. The
+authentication process provided by `shinyAuthX` should be used with
+caution, and we strongly recommend implementing additional security
+measures based on your specific requirements. We endorse Paul Campbell’s
+disclaimer statement regarding the security risks associated with the
+package. Please use `shinyAuthX` at your own risk.
+
+We are grateful for the contributions and support from all the
+individuals mentioned above, as well as the wider community that has
+provided feedback and suggestions to help improve `shinyAuthX`. Thank
+you for your valuable contributions and continued support!
+
+## Related work
+
+Both package [`shinyauthr`](https://github.com/PaulC91/shinyauthr) and
+[shinymanager](https://github.com/datastorm-open/shinymanager/) provide
+a nice shiny module to add an authentication layer to your shiny apps.

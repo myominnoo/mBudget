@@ -37,65 +37,36 @@ usethis::use_data(
 	internal = TRUE, overwrite = TRUE
 )
 
-user <- "admin"
-
-df_expense <- dummy_tbl_exp |> dplyr::filter(username == user)
-df_income <- dummy_tbl_income |> dplyr::filter(username == user)
-df_savings <- dummy_tbl_savings |> dplyr::filter(username == user)
-
-ttl_exp_amount <- df_expense$exp_amount |> sum(na.rm = TRUE)
-ttl_inc_amount <- df_income$inc_amount |> sum(na.rm = TRUE)
-ttl_sav_amount <- df_savings$sav_amount |> sum(na.rm = TRUE)
-
-balance <- ttl_inc_amount + ttl_sav_amount - ttl_exp_amount
-
-df_summ <- dummy_tbl_income |>
-	dplyr::group_by(inc_description) |>
-	dplyr::reframe(
-		sum = sum(inc_amount, na.rm = TRUE)
-	) |>
-	dplyr::ungroup() |>
-	dplyr::mutate(
-		inc_description = factor(inc_description),
-		inc_description = forcats::fct_infreq(inc_description, sum),
-		inc_description = forcats::fct_rev(inc_description)
-	)
-
-df_summ |>
-	ggplot2::ggplot(ggplot2::aes(x = sum, y = inc_description, fill = inc_description)) +
-	ggplot2::geom_col(position = "fill") +
-	ggplot2::scale_x_continuous(
-		labels = scales::label_percent()
-	) +
-	ggplot2::labs(
-		title = sprintf("$ %s spent between %s and %s",
-										scales::label_comma()(sum(df$sum, na.rm = TRUE)),
-										"start_date", "end_date"),
-		x = "$",
-		y = NULL,
-		fill = "Account"
-	) +
-	ggplot2::theme_minimal() +
-	ggplot2::theme(
-		legend.position = "right",
-		panel.grid.major.y = ggplot2::element_blank(),
-		panel.grid.minor.x = ggplot2::element_blank(),
-		plot.title.position = "plot"
-	)
-
-a
-# calculations ------------------------------------------------------------
-
-
-
-
-
+# temp_dir <- tempdir()
+# filenames <- sapply(c("expense", "income", "savings"),
+# 			 function(x) sprintf("%s/%s_%s_%s.xlsx", temp_dir,
+# 			 										"username", x,
+# 			 										format(Sys.time(), "%Y%m%d_%H%M%S")))
+#
+# mapply(rio::export,
+# 			 list(dummy_tbl_exp, dummy_tbl_income, dummy_tbl_savings),
+# 			 filenames)
+#
+# utils::zip("~/zip.zip", filenames)
+# utils::tar("~/zip.tar", filenames, compression = "gzip")
 
 # mongodb -----------------------------------------------------------------
 
 ## mongodb connection
 url <- "mongodb+srv://myself:letmein2022@budgetapp.whtgpcl.mongodb.net"
 
+
+# users -------------------------------------------------------------------
+
+con_tbl_user <- mongolite::mongo("tbl_user", "budgetApp", url)
+con_tbl_user$count()
+con_tbl_user$remove('{}')
+
+shinyAuthX::create_dummy_users() |>
+	con_tbl_user$insert()
+
+get_all_fields(con_tbl_user) |>
+	str()
 
 # expense table -----------------------------------------------------------
 

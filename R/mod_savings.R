@@ -109,8 +109,7 @@ mod_savings_ui <- function(id){
   		),
 
   		DT::dataTableOutput(ns("show_tbl")),
-  		shiny::div(style="text-align:center;",
-  							 shiny::p("To update, double-click a cell and edit."))
+  		shiny::div(style="text-align:center;", shiny::uiOutput(ns("tbl_instruct")))
 
   	)
 
@@ -123,6 +122,17 @@ mod_savings_ui <- function(id){
 mod_savings_server <- function(id, env){
 	moduleServer( id, function(input, output, session){
 		ns <- session$ns
+
+		output$tbl_instruct <- shiny::renderUI({
+			if (nrow(env$tbl_savings) > 0) {
+				shiny::p("To update, double-click a cell and edit.")
+			} else {
+				tagList(
+					shiny::p("To add a new record, choose 'Add New' from the dropdown menu."),
+					shiny::p("To import existing records, choose 'Import' from the dropdown menu."),
+				)
+			}
+		})
 
 		## show table
 		output$show_tbl <- DT::renderDT({

@@ -77,8 +77,7 @@ mod_category_ui <- function(id){
   		),
 
   		DT::dataTableOutput(ns("show_tbl")),
-  		shiny::div(style="text-align:center;",
-  							 shiny::p("To update, double-click a cell and edit."))
+  		shiny::div(style="text-align:center;", shiny::uiOutput(ns("tbl_instruct")))
 
   	)
   )
@@ -90,6 +89,17 @@ mod_category_ui <- function(id){
 mod_category_server <- function(id, env){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
+
+    output$tbl_instruct <- shiny::renderUI({
+    	if (nrow(env$tbl_category) > 0) {
+    		shiny::p("To update, double-click a cell and edit.")
+    	} else {
+    		tagList(
+    			shiny::p("To add a new record, choose 'Add New' from the dropdown menu."),
+    			shiny::p("To reset to default, choose 'Reset' from the dropdown menu."),
+    		)
+    	}
+    })
 
     ## show table
     output$show_tbl <- DT::renderDT({

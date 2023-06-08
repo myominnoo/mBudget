@@ -11,7 +11,6 @@ mod_home_ui <- function(id){
   ns <- NS(id)
   tagList(
 
-
   	shiny::fluidRow(
   		bs4Dash::box(
   			width = 3, status = "lightblue", collapsible = FALSE, solidHeader = TRUE,
@@ -148,20 +147,35 @@ mod_home_server <- function(id, env){
     observe({
 
     	## calculation
-    	df_expense <- env$tbl_expense |> dplyr::filter(username == env$user$username)
-    	df_income <- env$tbl_income |> dplyr::filter(username == env$user$username)
-    	df_savings <- env$tbl_savings |> dplyr::filter(username == env$user$username)
-
-    	ttl_exp_amount <- df_expense$exp_amount |> sum(na.rm = TRUE)
-    	ttl_inc_amount <- df_income$inc_amount |> sum(na.rm = TRUE)
-    	ttl_sav_amount <- df_savings$sav_amount |> sum(na.rm = TRUE)
+    	if (nrow(env$tbl_expense) > 0) {
+    		df_expense <- env$tbl_expense |>
+    			dplyr::filter(username == env$user$username)
+    		ttl_exp_amount <- df_expense$exp_amount |> sum(na.rm = TRUE)
+    	} else {ttl_exp_amount <- 0}
+    	if (nrow(env$tbl_income) > 0) {
+    		df_income <- env$tbl_income |>
+    			dplyr::filter(username == env$user$username)
+    		ttl_inc_amount <- df_income$inc_amount |> sum(na.rm = TRUE)
+    	} else {ttl_inc_amount <- 0}
+    	if (nrow(env$tbl_income) > 0) {
+    		df_savings <- env$tbl_savings |>
+    			dplyr::filter(username == env$user$username)
+    		ttl_sav_amount <- df_savings$sav_amount |> sum(na.rm = TRUE)
+    	} else {ttl_sav_amount <- 0}
 
     	balance <- ttl_inc_amount + ttl_sav_amount - ttl_exp_amount
-
-    	output$txt_balance <- shiny::renderUI(scales::label_comma(prefix = "$ ")(balance))
-    	output$txt_expense <- shiny::renderUI(scales::label_comma(prefix = "$ ")(ttl_exp_amount))
-    	output$txt_income <- shiny::renderUI(scales::label_comma(prefix = "$ ")(ttl_inc_amount))
-    	output$txt_savings <- shiny::renderUI(scales::label_comma(prefix = "$ ")(ttl_sav_amount))
+    	output$txt_balance <- shiny::renderUI(
+    		scales::label_comma(prefix = "$ ")(balance)
+    	)
+    	output$txt_expense <- shiny::renderUI(
+    		scales::label_comma(prefix = "$ ")(ttl_exp_amount)
+    	)
+    	output$txt_income <- shiny::renderUI(
+    		scales::label_comma(prefix = "$ ")(ttl_inc_amount)
+    	)
+    	output$txt_savings <- shiny::renderUI(
+    		scales::label_comma(prefix = "$ ")(ttl_sav_amount)
+    	)
 
     	output$fig_summary <- shiny::renderPlot({
     		tryCatch(
