@@ -2,19 +2,39 @@ Package: mBudget
 Title: Myo's Budget App
 Version: 0.1.0
 Authors@R: 
-    person("Myo Minn", "Oo", , "dr.myominnoo@gmail.com", role = c("cre", "aut"))
+    c(person(given = "Myo Minn",
+             family = "Oo",
+             role = c("aut", "cre"),
+             email = "dr.myominnoo@gmail.com",
+             comment = c(ORCID = "0000-0003-4089-016X")))
+Author: Myo Minn Oo <dr.myominnoo@gmail.com>
+Maintainer: Myo Minn Oo <dr.myominnoo@gmail.com>
 Description: A shiny app to manage personal budget.
 License: MIT + file LICENSE
 URL: https://github.com/myominnoo/mBudget
 BugReports: https://github.com/myominnoo/mBudget/issues
+Depends: 
+    R (>= 2.10)
 Imports: 
+    blastula,
     bs4Dash,
     config (>= 0.3.1),
+    dplyr,
     DT,
+    forcats,
+    ggplot2,
     golem (>= 0.4.0),
-    shinipsum,
+    lubridate,
+    mongolite,
+    readxl,
+    rio,
+    scales,
     shiny (>= 1.7.4),
-    shinyjs
+    shinyAuthX,
+    shinyjs,
+    shinymanager,
+    shinyWidgets,
+    tibble
 Suggests: 
     spelling,
     testthat (>= 3.0.0)
@@ -24,5 +44,3 @@ Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Depends: 
-    R (>= 2.10)
