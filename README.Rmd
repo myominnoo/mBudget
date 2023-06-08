@@ -29,6 +29,19 @@ To learn more about the extended user authentication capabilities offered by [sh
 
 **Disclaimer**: While mBudget prioritizes security, it is essential to understand that no authentication process is entirely foolproof. We recommend taking necessary precautions and evaluating the security measures in place. Use mBudget and shinyAuthX at your own risk, being mindful of protecting your personal information and ensuring the security of your application.
 
+## Demo live 
+
+[Click here](https://myominnoo.shinyapps.io/mBudget/) to checkout the app.
+
+URL: https://myominnoo.shinyapps.io/mBudget/
+
+Credentials (`username`/`password`): 
+- `admin`/`admin`
+- `user1`/`pass1`
+- `user2`/`pass2`
+
+Or check it out with your own account!
+
 ## Installation
 
 You can install the development version of mBudget from [GitHub](https://github.com/) with:
@@ -42,7 +55,7 @@ devtools::install_github("myominnoo/mBudget")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r example, eval=FALSE}
 ## Run the app 
 mBudget::run_app()
 ```

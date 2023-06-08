@@ -1,0 +1,13 @@
+name: mBudget
+title: mBudget
+username:
+account: myominnoo
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9268760
+bundleId: 7319196
+url: https://myominnoo.shinyapps.io/mBudget/
+when: 1686194881.45724
+lastSyncTime: 1686194881.45725
+asMultiple: FALSE
+asStatic: FALSE

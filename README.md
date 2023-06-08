@@ -46,6 +46,18 @@ measures in place. Use mBudget and shinyAuthX at your own risk, being
 mindful of protecting your personal information and ensuring the
 security of your application.
 
+## Demo live
+
+[Click here](https://myominnoo.shinyapps.io/mBudget/) to checkout the
+app.
+
+URL: <https://myominnoo.shinyapps.io/mBudget/>
+
+Credentials (`username`/`password`): - `admin`/`admin` -
+`user1`/`pass1` - `user2`/`pass2`
+
+Or check it out with your own account!
+
 ## Installation
 
 You can install the development version of mBudget from
@@ -64,8 +76,6 @@ This is a basic example which shows you how to solve a common problem:
 ## Run the app 
 mBudget::run_app()
 ```
-
-<div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
 
 ## Credits:
 

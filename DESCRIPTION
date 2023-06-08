@@ -26,6 +26,7 @@ Imports:
     golem (>= 0.4.0),
     lubridate,
     mongolite,
+    pkgload,
     readxl,
     rio,
     scales,
